@@ -71,7 +71,7 @@
   <script>
     let currentAccount = null;
     let abi;
-    let contactAddress = '0xa413C88c791745279026011f1a0E21238a9d4ED4'
+    let contactAddress = '0x57f9d9a5edd9feade35770c97f3d9ef6f1f1cac7'
 
     window.addEventListener('load', () => {
       if (window.ethereum) {
@@ -145,7 +145,7 @@
 
       await contractMoneyTree
         .methods
-        .buyleaves(buyleavesAddress)
+        .buyLeaves(buyleavesAddress)
         .send({ from: currentAccount, value: web3.utils.toWei(amount) });
     }
 
@@ -157,7 +157,7 @@
 
       await contractMoneyTree
         .methods
-        .sellleaves()
+        .sellLeaves()
         .send({ from: currentAccount });
     }
 
@@ -176,24 +176,24 @@
     }
   </script>
   <script>
-    $.getJSON("https://api-testnet.bscscan.com/api?module=contract&action=getabi&address=0xa413c88c791745279026011f1a0e21238a9d4ed4", function (result) {
-      abi = JSON.parse(result.result)
+    $.getJSON(`https://api-testnet.bscscan.com/api?module=contract&action=getabi&address=${contactAddress}`, function (result) {
+      abi = JSON.parse(result.result);
     });
     $(document).ready(function () {
       m = detectMetaMask()
       if (window.ethereum) {
-        $('#metaicon').removeClass('meta-gray')
-        $('#metaicon').addClass('meta-normal')
-        $('#enableMetamask').attr('disabled', false)
+        $('#metaicon').removeClass('meta-gray');
+        $('#metaicon').addClass('meta-normal');
+        $('#enableMetamask').attr('disabled', false);
         connect() // Make sure the connected wallet is being returned
       } else {
-        $('#enableMetamask').attr('disabled', true)
-        $('#metaicon').removeClass('meta-normal')
-        $('#metaicon').addClass('meta-gray')
+        $('#enableMetamask').attr('disabled', true);
+        $('#metaicon').removeClass('meta-normal');
+        $('#metaicon').addClass('meta-gray');
       }
 
       $('#enableMetamask').click(function () {
-        connect()
+        connect();
       });
 
       $('#hireMinerButton').click(() => {
@@ -212,7 +212,7 @@
       try {
         window.web3 = new Web3(web3.currentProvider);
       } catch (error) {
-        alert(error)
+        alert(error);
       }
     })
   </script>
